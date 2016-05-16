@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="shoppingCartApp" ng-controller="bagController">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-md-8">
+        <h2> My Shopping Bag </h2>
+      </div>
+      <div class="col-md-3 text-right">
+        <h3> Order total: {{orderTotal}} </h3>
+      </div>
+    </div>
+
+    <div>
+      <div class="col-md-7 grid">
+        <b> Product </b>
+      </div>
+      <div class="col-md-1 grid">
+        <b> Quantity </b>
+      </div>
+      <div class="col-md-1 grid">
+        <b> Subtotal </b>
+      </div>
+    </div>
+
+    <inBag ng-repeat="item in shoppingBag">
+      <itemInfo class="col-md-7 checkoutBox">
+        <h3> {{item.name}} </h3>
+        <img ng-src= "{{item.imageUrl}}"/>
+        <div>
+          <caffeine> <b> Caffeine Scale: </b> {{item.caffeineScale}} </caffeine>
+        </div>
+        <div>
+          <ingredients> <b> Ingredients: </b> {{item.ingredients}} </ingredients>
+        </div>
+        <div>
+          <rating> <b> Rating: </b> {{item.rating}} </rating>
+        </div>
+      </itemInfo>
+      <itemQuantity class="col-md-1 text-right checkoutBox">
+        <p ng-show="item.editQuantity === false" class="moveDown"> {{item.quantity}} </p>
+        <div ng-show="item.editQuantity === true">
+          <input type="number" class="col-md-12 moveDown" ng-model="item.revisedQuantity">
+          </input>
+        </div>
+      </itemQuantity>
+      <subtotal class="col-md-1 text-right checkoutBox">
+        <p class="moveDown"> {{item.subtotal}} </p>
+      </subtotal>
+      <itemButtons class="col-md-3 checkoutBox">
+        <editButton type="button" class="btn btn-warning moveDown" name="editButton" ng-click='item.editQuantity = !item.editQuantity' ng-show="item.editQuantity === false"> Edit </editButton>
+        <saveButton type="button" class="btn btn-warning moveDown" name="editButton" ng-show="item.editQuantity === true" ng-click="updateSubtotal(item)"> Save </saveButton>
+        <removeButton type="button" class="btn btn-danger moveDown" name="editButton" ng-click="removeFromBag(item); getOrderTotal()"> Remove </removeButton>
+      </itemButtons>
+    </inBag>
+
+  </body>
+</html>

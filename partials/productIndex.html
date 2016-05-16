@@ -12,6 +12,13 @@
       <div class="col-md-6">
           Information
       </div>
+      <div class="col-md-3 text-right">
+        <a href="#/checkout">
+          <checkout class="btn btn-danger checkout" name="button"> Checkout | Bag:
+            <ng-pluralize count='shoppingBag.length' when="{'0': 'Empty!', '1': '{{shoppingBag.length}} tea', 'other': '{{shoppingBag.length}} teas'}"> </ng-pluralize>
+          </checkout>
+        </a>
+      </div>
     </div>
     <product class="row col-md-12" style="padding: 0px" ng-repeat="tea in teas">
       <imageBox class="col-md-3">

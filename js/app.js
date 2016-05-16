@@ -6,6 +6,11 @@ shoppingCartApp.config(function($routeProvider) {
       templateUrl: 'partials/productIndex.html',
       controller: 'mainController'
     })
+    .when('/checkout', {
+      templateUrl: 'partials/shoppingBag.html',
+      controller: 'bagController'
+    }
+    )
 })
 
 // shoppingCartApp.filter('currencyAdj', function () {

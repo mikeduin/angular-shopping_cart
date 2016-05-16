@@ -29,3 +29,21 @@ product div {
 quantity label {
   font-size: 22px
 }
+
+.checkout {
+  margin-bottom: 5px;
+}
+
+inBag itemInfo {
+  border: solid 1px #BBB9BB;
+  height: 350px;
+}
+
+.checkoutBox {
+  height: 350px;
+  border: solid 1px #BBB9BB;
+}
+
+.moveDown {
+  margin-top: 10px;
+}
