@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="shoppingCartApp" ng-controller="mainController">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="row col-md-12" style="padding: 0px">
+      <div class="col-md-3">
+          Tea
+      </div>
+      <div class="col-md-6">
+          Information
+      </div>
+    </div>
+    <product class="row col-md-12" style="padding: 0px" ng-repeat="tea in teas">
+      <imageBox class="col-md-3">
+        <img ng-src= "{{tea.imageUrl}}"/>
+      </imageBox>
+      <description class="col-md-6">
+        <div>
+          <name> {{tea.name}} </name>
+        </div>
+        <div>
+          <price> <b> Price: </b> {{tea.price}} </price>
+        </div>
+        <div>
+          <caffeine> <b> Caffeine Scale: </b> {{tea.caffeineScale}} </caffeine>
+        </div>
+        <div>
+          <ingredients> <b> Ingredients: </b> {{tea.ingredients}} </ingredients>
+        </div>
+        <div>
+          <rating> <b> Rating: </b> {{tea.rating}} </rating>
+        </div>
+        <div>
+          <inStock> <b> In Stock: </b> </inStock>
+        </div>
+        <div>
+          <categories> <b> Categories: </b>
+            <ul>
+              <li ng-repeat="category in tea.categories">
+                {{category}}
+              </li>
+            </ul>
+          </categories>
+        </div>
+      </description>
+      <quantity class="col-md-3">
+        <label for="quantity"> Quantity: </label>
+        <select class="" name="quantitySelect" ng-model="tea.quantity">
+          <option ng-repeat="value in teas.quantity" value={{value}}> {{value}}
+        </select>
+        <button type="button" class="btn btn-warning" ng-click="addToBag(tea)"> Add to Bag </button>
+      </quantity>
+    </product>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+header {
+  background-color: #C46727;
+  color: white;
+}
+
+.grid {
+  border: solid 1px #BBB9BB;
+}
+
+product {
+  border: solid 1px #BBB9BB;
+  padding: 0px;
+  display: inline-block;
+}
+
+product description {
+  border-left: solid 1px #BBB9BB;
+}
+
+product description name {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+product div {
+  margin-top: 5px;
+}
+
+quantity label {
+  font-size: 22px
+}
