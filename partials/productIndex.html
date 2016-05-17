@@ -5,12 +5,24 @@
     <title></title>
   </head>
   <body>
-    <div class="row col-md-12" style="padding: 0px">
+    <div class="row">
       <div class="col-md-3">
-          Tea
+        <em> Search by category: </em>
+        <select class="" name="categorySearch">
+          <!-- <option ng-repeat="tea.category in teas"> {{category}} </option> -->
+        </select>
       </div>
-      <div class="col-md-6">
-          Information
+      <div class="col-md-3">
+        <em> Search by name: </em>
+        <input class="" name="nameSearch" role="search" ng-model="nameSearch">
+      </input>
+      </div>
+      <div class="col-md-3">
+        <em> Sort by Price: </em>
+        <select class="" name="priceSort" ng-model="priceSort">
+          <option value = "-price"> High to Low </option>
+          <option value = "price"> Low to High </option>
+        </select>
       </div>
       <div class="col-md-3 text-right">
         <a href="#/checkout">
@@ -20,7 +32,9 @@
         </a>
       </div>
     </div>
-    <product class="row col-md-12" style="padding: 0px" ng-repeat="tea in teas">
+
+  <div class="row">
+    <product class="col-md-12" ng-repeat="tea in teas | filter: {name: nameSearch} | orderBy: priceSort">
       <imageBox class="col-md-3">
         <img ng-src= "{{tea.imageUrl}}"/>
       </imageBox>
@@ -29,7 +43,7 @@
           <name> {{tea.name}} </name>
         </div>
         <div>
-          <price> <b> Price: </b> {{tea.price}} </price>
+          <price> <b> Price: </b> {{tea.price | currencyAdj}} </price>
         </div>
         <div>
           <caffeine> <b> Caffeine Scale: </b> {{tea.caffeineScale}} </caffeine>
@@ -41,7 +55,10 @@
           <rating> <b> Rating: </b> {{tea.rating}} </rating>
         </div>
         <div>
-          <inStock> <b> In Stock: </b> </inStock>
+          <inStock> <b> In Stock: </b>
+            <span ng-show="tea.inStock === true"> Yes </span>
+            <span ng-hide="tea.inStock === true"> No </span>
+          </inStock>
         </div>
         <div>
           <categories> <b> Categories: </b>
@@ -55,12 +72,14 @@
       </description>
       <quantity class="col-md-3">
         <label for="quantity"> Quantity: </label>
-        <select class="" name="quantitySelect" ng-model="tea.quantity">
-          <option ng-repeat="value in teas.quantity" value={{value}}> {{value}}
+        <select name="quantitySelect" ng-model="tea.quantity">
+          <option ng-repeat="value in quantity" value={{value}}> {{value}}
         </select>
         <button type="button" class="btn btn-warning" ng-click="addToBag(tea)"> Add to Bag </button>
       </quantity>
     </product>
+  </div>
+
 
   </body>
 </html>

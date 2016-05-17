@@ -10,7 +10,7 @@
         <h2> My Shopping Bag </h2>
       </div>
       <div class="col-md-3 text-right">
-        <h3> Order total: {{orderTotal}} </h3>
+        <h3> Order total: {{orderTotal | currencyAdj}} </h3>
       </div>
     </div>
 
@@ -42,17 +42,20 @@
       </itemInfo>
       <itemQuantity class="col-md-1 text-right checkoutBox">
         <p ng-show="item.editQuantity === false" class="moveDown"> {{item.quantity}} </p>
-        <div ng-show="item.editQuantity === true">
-          <input type="number" class="col-md-12 moveDown" ng-model="item.revisedQuantity">
+        <form ng-show="item.editQuantity === true" name="quantityForm">
+          <input type="number" class="col-md-12 moveDown" ng-model="item.revisedQuantity" min="0" name="quantity">
           </input>
-        </div>
+          <div class="" ng-show="quantityForm.$invalid">
+            <p style="color: red"> Quantity cannot be less than 0 </p>
+          </div>
+        </form>
       </itemQuantity>
       <subtotal class="col-md-1 text-right checkoutBox">
-        <p class="moveDown"> {{item.subtotal}} </p>
+        <p class="moveDown"> {{item.subtotal | currencyAdj}} </p>
       </subtotal>
       <itemButtons class="col-md-3 checkoutBox">
         <editButton type="button" class="btn btn-warning moveDown" name="editButton" ng-click='item.editQuantity = !item.editQuantity' ng-show="item.editQuantity === false"> Edit </editButton>
-        <saveButton type="button" class="btn btn-warning moveDown" name="editButton" ng-show="item.editQuantity === true" ng-click="updateSubtotal(item)"> Save </saveButton>
+        <saveButton type="button" class="btn btn-warning moveDown" name="editButton" ng-show="item.editQuantity === true && quantityForm.$valid" ng-click="updateSubtotal(item)"> Save </saveButton>
         <removeButton type="button" class="btn btn-danger moveDown" name="editButton" ng-click="removeFromBag(item); getOrderTotal()"> Remove </removeButton>
       </itemButtons>
     </inBag>

@@ -1,6 +1,7 @@
 header {
   background-color: #C46727;
   color: white;
+  font-size: 24px;
 }
 
 .grid {
@@ -31,7 +32,7 @@ quantity label {
 }
 
 .checkout {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 inBag itemInfo {

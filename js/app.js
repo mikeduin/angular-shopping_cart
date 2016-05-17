@@ -13,9 +13,8 @@ shoppingCartApp.config(function($routeProvider) {
     )
 })
 
-// shoppingCartApp.filter('currencyAdj', function () {
-//   return function (price) {
-//     var adj = '$' + price.slice(0, 2) + '.' + price.slice(-2);
-//     return adj;
-//   }
-// })
+shoppingCartApp.filter('currencyAdj', function () {
+  return function (price) {
+    return '$' + (price / 100).toFixed(2);
+  }
+})
