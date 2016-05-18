@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-md-3">
         <em> Search by Category: </em>
-        <select name="categorySearch" ng-model="categorySearch">
+        <select name="categorySelect" ng-model="categorySelect">
           <option value=""> </option>
           <option ng-repeat="category in categories" value="category"> {{category}} </option>
         </select>
@@ -16,7 +16,7 @@
       <div class="col-md-3">
         <em> Search by name: </em>
         <input name="nameSearch" role="search" ng-model="nameSearch">
-      </input>
+        </input>
       </div>
       <div class="col-md-3">
         <em> Sort by Price: </em>
@@ -36,7 +36,7 @@
     </div>
 
   <div class="row">
-    <product class="col-md-12" ng-repeat="tea in teas | filter: {name: nameSearch, categories: categorySearch} | orderBy: priceSort">
+    <product class="col-md-12" ng-repeat="tea in teas | filter: {name: nameSearch, categories: categorySelect} | orderBy: priceSort">
       <imageBox class="col-md-3">
         <img ng-src= "{{tea.imageUrl}}"/>
       </imageBox>
