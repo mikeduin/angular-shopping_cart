@@ -14,10 +14,13 @@ shoppingCartApp.controller('mainController', ['$scope', 'shoppingService', funct
     shoppingService.addToBag(tea);
   }
 
-  // $scope.getCategories = function (teas) {
-  //   shoppingService.getCategories(teas);
-  //   console.log(getCategories);
-  // }
+  $scope.categories = []
+  $scope.getCategories = function () {
+    shoppingService.getCategories().then(function(categories){
+      $scope.categories = categories;
+    });
+  }
+  $scope.getCategories();
 
 }])
 

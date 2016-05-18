@@ -7,19 +7,21 @@
   <body>
     <div class="row">
       <div class="col-md-3">
-        <em> Search by category: </em>
-        <select class="" name="categorySearch">
-          <!-- <option ng-repeat="tea.category in teas"> {{category}} </option> -->
+        <em> Search by Category: </em>
+        <select name="categorySearch" ng-model="categorySearch">
+          <option value=""> </option>
+          <option ng-repeat="category in categories" value="category"> {{category}} </option>
         </select>
       </div>
       <div class="col-md-3">
         <em> Search by name: </em>
-        <input class="" name="nameSearch" role="search" ng-model="nameSearch">
+        <input name="nameSearch" role="search" ng-model="nameSearch">
       </input>
       </div>
       <div class="col-md-3">
         <em> Sort by Price: </em>
-        <select class="" name="priceSort" ng-model="priceSort">
+        <select name="priceSort" ng-model="priceSort">
+          <option value = ""> (unsorted) </option>
           <option value = "-price"> High to Low </option>
           <option value = "price"> Low to High </option>
         </select>
@@ -34,7 +36,7 @@
     </div>
 
   <div class="row">
-    <product class="col-md-12" ng-repeat="tea in teas | filter: {name: nameSearch} | orderBy: priceSort">
+    <product class="col-md-12" ng-repeat="tea in teas | filter: {name: nameSearch, categories: categorySearch} | orderBy: priceSort">
       <imageBox class="col-md-3">
         <img ng-src= "{{tea.imageUrl}}"/>
       </imageBox>
@@ -71,7 +73,7 @@
         </div>
       </description>
       <quantity class="col-md-3">
-        <label for="quantity"> Quantity: </label>
+        <label> Quantity: </label>
         <select name="quantitySelect" ng-model="tea.quantity">
           <option ng-repeat="value in quantity" value={{value}}> {{value}}
         </select>

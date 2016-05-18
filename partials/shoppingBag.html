@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <inBag ng-repeat="item in shoppingBag">
+    <inBag ng-repeat="item in shoppingBag track by $index">
       <itemInfo class="col-md-7 checkoutBox">
         <h3> {{item.name}} </h3>
         <img ng-src= "{{item.imageUrl}}"/>
